@@ -49,3 +49,8 @@ ssh-be: ## ssh's into the be container
 
 code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
+
+generate-ssh-keys: ## Generate SSH keys for the JWT library
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} mkdir -p config/jwt
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl genrsa -passout pass:06d67781f121f4ac7d7c4d5527e6556b -out config/jwt/private.pem -aes256 4096
+    U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl rsa -pubout -passin pass:06d67781f121f4ac7d7c4d5527e6556b -in config/jwt/private.pem -out config/jwt/public.pem
