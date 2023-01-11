@@ -10,7 +10,7 @@
         <field name="active" type="boolean"/>
         <field name="resetPasswordToken" length="100" nullable="true"/>
         <field name="createdAt" type="datetime"/>
-        <field name="updateAt" type="datetime"/>
+        <field name="updatedAt" type="datetime"/>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated"/>

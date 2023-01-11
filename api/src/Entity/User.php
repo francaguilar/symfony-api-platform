@@ -16,7 +16,7 @@ class User implements UserInterface
     private ?string $resetPasswordToken;
     private bool $active;
     private \DateTime $createdAt;
-    private \DateTime $updateAt;
+    private \DateTime $updatedAt;
 
     /**
      * @param string $name
@@ -173,9 +173,9 @@ class User implements UserInterface
     /**
      * @return \DateTime
      */
-    public function getUpdateAt(): \DateTime
+    public function getUpdatedAt(): \DateTime
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
     /**
@@ -183,7 +183,7 @@ class User implements UserInterface
      */
     public function markAsUpdated(): void
     {
-        $this->updateAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
 
