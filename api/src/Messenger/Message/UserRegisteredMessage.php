@@ -2,7 +2,7 @@
 
 namespace App\Messenger\Message;
 
-class UserRegistedMessage
+class UserRegisteredMessage
 {
     private string $id;
     private string $name;

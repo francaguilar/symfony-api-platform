@@ -1,5 +1,10 @@
 framework:
     messenger:
+        serializer:
+            default_serializer: messenger.transport.symfony_serializer
+            symfony_serializer:
+                format: json
+                context: { }
         # reset services after consuming messages
         reset_on_message: true
 
@@ -7,11 +12,23 @@ framework:
         # failure_transport: failed
 
         transports:
+            ampq_user:
+                dsn: '%env(string:MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    vhost: '%env(string:MESSENGER_VHOST)%'
+                    exchange:
+                        name: '%env(string:MESSENGER_EXCHANGE)%'
+                        type: direct
+                    queues:
+                        user_queue:
+                            binding_keys: [user_queue]
+                    auto_setup: true
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
         routing:
+            'App\Messenger\Message\UserRegisteredMessage': ampq_user
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
