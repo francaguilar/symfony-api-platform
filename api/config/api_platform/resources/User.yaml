@@ -13,7 +13,7 @@ App\Entity\User:
         summary: Register a new user
     resend_activation_email:
       method: POST
-      path: /users/resend_activation/email
+      path: /users/resend_activation_email
       controller: App\Api\Action\User\ResendActivationEmail
       deserialize: false
       openapi_context:
@@ -27,7 +27,6 @@ App\Entity\User:
                   email:
                     type: string
                     required: true
-
         responses:
           200:
             description: OK
@@ -37,6 +36,31 @@ App\Entity\User:
                   type: object
                   properties:
                     message:
+                      type: string
+    login:
+      method: POST
+      route_name: api_login_check
+      openapi_context:
+        summary: Login a user in the API
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password:
+                    type: string
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
                       type: string
   itemOperations:
     get:
@@ -50,5 +74,3 @@ App\Entity\User:
         groups: [user_activate]
       openapi_context:
         summary: Activates a user
-
-
