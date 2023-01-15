@@ -30,5 +30,6 @@ framework:
 
         routing:
             'App\Messenger\Message\UserRegisteredMessage': ampq_user
+            'App\Messenger\Message\RequestResetPasswordMessage': ampq_user
             # Route your messages to the transports
             # 'App\Message\YourMessage': async

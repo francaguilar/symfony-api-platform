@@ -17,7 +17,7 @@ framework:
                 retry_strategy:
                     max_retries: 1
                     delay: 1000
-                    multiplier: 2
+                    multiplier: 1
                 options:
                     vhost: '%env(string:MESSENGER_VHOST)%'
                     exchange:
@@ -29,12 +29,8 @@ framework:
                     auto_setup: true
             failed:
                 dsn: 'doctrine://default?queue_name=failed'
-            # https://symfony.com/doc/current/messenger.html#transport-configuration
-            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
-            # failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
 
         routing:
             'Mailer\Messenger\Message\UserRegisteredMessage': ampq_user
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            'Mailer\Messenger\Message\RequestResetPasswordMessage': ampq_user
+
