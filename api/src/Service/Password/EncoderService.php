@@ -2,6 +2,7 @@
 
 namespace App\Service\Password;
 
+use App\Entity\User;
 use App\Exceptions\Password\PasswordException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
